@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jornada em Autoria — 1ª Semana · Dia 1 · Carta ao Futuro</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --parchment-mid:  #EAD9B4;
+  --cream:          #F0E6CC;
+  --ink:            #1C1410;
+  --ink-soft:       #362718;
+  --sepia:          #7A5C3A;
+  --sepia-light:    #B8966A;
+  --gold:           #9A7230;
+  --gold-soft:      #C49A45;
+  --rust:           #7A2E1A;
+  --sage:           #5A6B4E;
+  --edge-light:     rgba(184, 150, 106, 0.22);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #1E150C;
+  background-image:
+    radial-gradient(ellipse 90% 50% at 50% 0%,   #32200E 0%, transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, #120C06 0%, transparent 70%);
+  min-height: 100vh;
+  font-family: 'Lora', Georgia, serif;
+  color: var(--ink);
+  overflow-x: hidden;
+  padding: 48px 16px 72px;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+[data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+.parchment {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  background:
+    radial-gradient(ellipse 110% 40% at 50% 0%,   rgba(255,255,255,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 110% 30% at 50% 100%, rgba(0,0,0,0.10)       0%, transparent 60%),
+    radial-gradient(ellipse 40%  30% at 0%   0%,  rgba(90,60,20,0.18)    0%, transparent 55%),
+    radial-gradient(ellipse 40%  30% at 100% 0%,  rgba(90,60,20,0.14)    0%, transparent 55%),
+    radial-gradient(ellipse 40%  25% at 0%  100%, rgba(40,20,5,0.22)     0%, transparent 55%),
+    radial-gradient(ellipse 40%  25% at 100% 100%,rgba(40,20,5,0.22)     0%, transparent 55%),
+    linear-gradient(168deg, #F2E8D0 0%, #EDE0B8 35%, #E8D8A8 68%, #E0CFA0 100%);
+  padding: 72px 88px 80px;
+  overflow: hidden;
+  box-shadow:
+    0  2px   4px rgba(0,0,0,0.25),
+    0  8px  24px rgba(0,0,0,0.35),
+    0 32px  80px rgba(0,0,0,0.50),
+    0 64px 120px rgba(0,0,0,0.30);
+}
+.parchment::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+.parchment > * { position: relative; z-index: 1; }
+
+.frame {
+  position: absolute;
+  inset: 26px;
+  border: 1px solid rgba(122, 92, 58, 0.30);
+  pointer-events: none;
+  z-index: 2;
+}
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(122, 92, 58, 0.13);
+}
+.corner {
+  position: absolute;
+  font-size: 0.55rem;
+  color: var(--sepia-light);
+  background: #EAD9B4;
+  width: 18px; height: 18px;
+  text-align: center; line-height: 18px;
+  z-index: 3;
+}
+.corner.tl { top: 17px;  left: 17px; }
+.corner.tr { top: 17px;  right: 17px; }
+.corner.bl { bottom: 17px; left: 17px; }
+.corner.br { bottom: 17px; right: 17px; }
+
+/* Seal */
+.seal {
+  display: flex;
+  align-items: center;
+  margin-bottom: 52px;
+}
+.seal-bar {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sepia-light), transparent);
+}
+.seal-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0 24px;
+}
+.seal-glyph { font-size: 1.1rem; color: var(--gold-soft); letter-spacing: 0.3em; line-height: 1; }
+.seal-label {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  white-space: nowrap;
+}
+
+/* Day badge */
+.day-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+.badge-week {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  padding: 6px 16px;
+  border: 1px solid var(--edge-light);
+  background: rgba(122,92,58,0.05);
+}
+.badge-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--sepia-light); opacity: 0.5; }
+.badge-day {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--rust);
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--edge-light);
+}
+.salutation {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--sepia);
+  margin-bottom: 20px;
+  display: block;
+}
+h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+h1 em { font-style: italic; color: var(--rust); }
+.rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 24px 0;
+  color: var(--gold-soft);
+  font-size: 0.75rem;
+  letter-spacing: 0.5em;
+}
+.rule::before { content: ''; width: 72px; height: 1px; background: linear-gradient(to right, transparent, var(--sepia-light)); }
+.rule::after  { content: ''; width: 72px; height: 1px; background: linear-gradient(to left,  transparent, var(--sepia-light)); }
+.subtitle {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.12rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sepia);
+  line-height: 1.65;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* Body */
+p {
+  font-family: 'Lora', serif;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  line-height: 1.95;
+  margin-bottom: 20px;
+}
+.drop-cap::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.72;
+  margin: 8px 10px 0 0;
+  color: var(--rust);
+}
+
+/* Section label */
+.sec-label {
+  text-align: center;
+  margin: 52px 0 26px;
+}
+.sec-label span {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.sec-label span::before,
+.sec-label span::after {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background: var(--sepia-light);
+}
+
+/* Illuminated quote */
+.quote-block {
+  margin: 44px -12px;
+  padding: 40px 52px;
+  position: relative;
+  text-align: center;
+  border-top: 1px solid var(--edge-light);
+  border-bottom: 1px solid var(--edge-light);
+  background: linear-gradient(180deg, rgba(154,114,48,0.045) 0%, rgba(154,114,48,0.015) 100%);
+}
+.quote-block::before {
+  content: '❧'; position: absolute;
+  left: 18px; top: 50%; transform: translateY(-50%);
+  color: var(--gold-soft); font-size: 1rem; opacity: 0.7;
+}
+.quote-block::after {
+  content: '❧'; position: absolute;
+  right: 18px; top: 50%; transform: translateY(-50%) scaleX(-1);
+  color: var(--gold-soft); font-size: 1rem; opacity: 0.7;
+}
+.quote-block p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 420px;
+}
+
+/* Scribe note */
+.scribe-note {
+  margin: 40px 0;
+  padding: 28px 36px;
+  border-left: 2px solid rgba(90,107,78,0.5);
+  background: linear-gradient(to right, rgba(90,107,78,0.06), transparent 80%);
+}
+.scribe-note-label {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sage);
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 8px;
+}
+.scribe-note p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.05rem;
+  color: var(--sage);
+  font-style: italic;
+  margin: 0;
+  line-height: 1.75;
+}
+
+/* APAR block */
+.apar-block {
+  margin: 52px 0 0;
+  border: 1px solid rgba(122, 92, 58, 0.28);
+  background: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 100%);
+  position: relative;
+}
+.apar-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(122, 92, 58, 0.18);
+}
+.apar-tab {
+  background: var(--rust);
+  color: #F0E6CC;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.apar-title-bar {
+  flex: 1;
+  padding: 10px 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--sepia);
+}
+.apar-body { padding: 36px 44px 40px; }
+.apar-body p { font-size: 1rem; margin-bottom: 18px; }
+.apar-body p:last-of-type { margin-bottom: 0; }
+
+/* Breath instruction */
+.breath-note {
+  text-align: center;
+  margin: 0 0 32px;
+  padding: 24px;
+  position: relative;
+}
+.breath-note::before,
+.breath-note::after {
+  content: '';
+  position: absolute;
+  left: 20%; right: 20%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sepia-light), transparent);
+}
+.breath-note::before { top: 0; }
+.breath-note::after  { bottom: 0; }
+.breath-note p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.02rem;
+  font-style: italic;
+  color: var(--sepia);
+  margin: 0;
+  line-height: 1.75;
+}
+
+/* Questions */
+.questions {
+  margin: 28px 0 32px;
+  display: flex;
+  flex-direction: column;
+}
+.question-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--edge-light);
+}
+.question-item:first-child { border-top: 1px solid var(--edge-light); }
+.q-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  color: rgba(184, 150, 106, 0.45);
+  line-height: 1;
+  min-width: 28px;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+.q-text {
+  font-family: 'Lora', serif;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* Closing instruction */
+.closing-instruction {
+  margin-top: 36px;
+  padding: 32px 40px;
+  border: 1px dashed rgba(122, 92, 58, 0.3);
+  background: rgba(154, 114, 48, 0.03);
+  text-align: center;
+  position: relative;
+}
+.closing-instruction::before {
+  content: '✦';
+  position: absolute;
+  top: -10px; left: 50%;
+  transform: translateX(-50%);
+  background: #EAD9B4;
+  padding: 0 10px;
+  font-size: 0.7rem;
+  color: var(--gold-soft);
+}
+.closing-instruction p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--sepia);
+  margin: 0;
+  line-height: 1.75;
+}
+
+/* Footer seal */
+.pg-footer { margin-top: 56px; padding-top: 28px; }
+.pg-footer-rule { display: flex; align-items: center; margin-bottom: 14px; }
+.pg-footer-bar { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--sepia-light), transparent); }
+.pg-footer-glyph { padding: 0 20px; font-size: 0.85rem; color: var(--gold-soft); letter-spacing: 0.4em; opacity: 0.8; }
+.pg-footer p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--sepia);
+  text-align: center;
+  opacity: 0.65;
+  margin: 0;
+}
+
+/* Entrance */
+.fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.9s ease forwards; }
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.28s; }
+.fade-in:nth-child(3) { animation-delay: 0.46s; }
+.fade-in:nth-child(4) { animation-delay: 0.64s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 640px) {
+  body { padding: 16px 8px 48px; }
+  .parchment { padding: 44px 28px 52px; }
+  .frame { inset: 14px; }
+  h1 { font-size: 1.85rem; }
+  .quote-block { margin: 36px -8px; padding: 30px 32px; }
+  .apar-body { padding: 24px 22px 28px; }
+  .question-item { gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="parchment">
+
+  <div class="frame"></div>
+  <div class="corner tl">✦</div>
+  <div class="corner tr">✦</div>
+  <div class="corner bl">✦</div>
+  <div class="corner br">✦</div>
+
+  <!-- Seal -->
+  <div class="seal fade-in">
+    <div class="seal-bar"></div>
+    <div class="seal-center">
+      <div class="seal-glyph">✦ ✦ ✦</div>
+      <div class="seal-label">Jornada em Autoria · 1ª Semana · Dia 1</div>
+    </div>
+    <div class="seal-bar"></div>
+  </div>
+
+  <!-- Day badge -->
+  <div class="day-badge fade-in">
+    <span class="badge-week">1ª Semana</span>
+    <div class="badge-dot"></div>
+    <span class="badge-day">Primeiro Dia</span>
+  </div>
+
+  <!-- Header -->
+  <header class="fade-in">
+    <span class="salutation">Querida pessoa,</span>
+    <h1>A <em>Carta ao Futuro</em></h1>
+    <div class="rule">✦</div>
+    <p class="subtitle">Um encontro entre o seu Eu de hoje e o Eu que você está prestes a se tornar.</p>
+  </header>
+
+  <!-- Sec 1 -->
+  <div data-reveal>
+    <div class="sec-label"><span>O Começo da Jornada</span></div>
+    <p class="drop-cap">
+      Começaremos agora nossa intensa jornada, que durará 12 semanas, de autoconhecimento e empoderamento. E começaremos com uma ferramenta muito poderosa e conhecida quando falamos em desenvolvimento pessoal: a Carta ao Futuro.
+    </p>
+    <p>
+      A Carta ao Futuro é um poderoso exercício de consciência. Com base no seu contexto atual, você poderá projetar uma perspectiva desejada, imaginando o lugar e a situação em que você gostaria de se encontrar no futuro. O objetivo é criar um encontro entre o seu Eu atual e o seu Eu do futuro.
+    </p>
+
+    <div class="quote-block">
+      <p>Será que, no tempo em que você receber sua carta, estará do jeito que imaginou que estaria?</p>
+    </div>
+
+    <p>
+      Independentemente do que aconteça, com certeza será uma surpresa agradável e interessante abrir essa carta daqui a um ano. Você poderá relembrar quais eram suas crenças e expectativas, e poderá julgar quais ainda perduram, quais foram transformadas ou abandonadas.
+    </p>
+
+    <div class="scribe-note">
+      <span class="scribe-note-label">O mais importante</span>
+      <p>Você irá perceber que o autor da sua história é você mesmo. Você pode criar e escolher tudo aquilo que ambiciona. O universo é infinito em suas possibilidades.</p>
+    </div>
+
+    <p>
+      Foque naquilo que você mais deseja alcançar, nos seus sonhos e objetivos. Conte sobre o que você tem aprendido e sobre o que espera aprender ao longo desse ano que separa o seu Eu atual do seu Eu futuro. Aproveite esta oportunidade para dar um conselho a si mesmo, para fixar coisas que são verdadeiramente importantes e que não podem ser esquecidas.
+    </p>
+    <p>
+      Quando você finalmente abrir essa carta daqui a um ano, ela será uma importante prova e material de avaliação de si mesmo. Lembre-se de guardar sua carta para que você possa recebê-la no futuro. Espero sinceramente que ela sirva a um propósito de redescoberta e de aprendizado. <strong>Você é o senhor do seu próprio destino!</strong>
+    </p>
+  </div>
+
+  <!-- APAR -->
+  <div data-reveal>
+    <div class="apar-block">
+      <div class="apar-header">
+        <div class="apar-tab">APAR · Dia 1</div>
+        <div class="apar-title-bar">Carta ao Futuro — Sua Missão de Hoje</div>
+      </div>
+      <div class="apar-body">
+
+        <div class="breath-note">
+          <p>
+            Permita-se neste momento se conectar profundamente com você mesmo.<br>
+            Respire profundamente e preste atenção em sua respiração,<br>
+            percebendo cada batida de seu coração.<br>
+            A cada vez mais, você vai se acalmando, relaxando e se conectando.<br>
+            Conforme respira, fica mais conectado em si mesmo.
+          </p>
+        </div>
+
+        <p>
+          Neste momento quero te convidar a refletir sobre algumas perguntas. E ao final dessa reflexão, do seu jeito e da sua forma, quero que você escreva uma carta a você mesmo, imaginando que vai se encontrar no futuro, poucos dias antes do Natal, no dia <strong>20 de dezembro deste ano</strong>.
+        </p>
+        <p>
+          Ao receber sua carta, você poderá se ler, se surpreender, refletir e transcender as seguintes perguntas, que podem ser respondidas ao escrever a sua carta:
+        </p>
+
+        <div class="questions">
+          <div class="question-item">
+            <span class="q-num">1</span>
+            <span class="q-text">O que está acontecendo com você agora?</span>
+          </div>
+          <div class="question-item">
+            <span class="q-num">2</span>
+            <span class="q-text">O que você realmente deseja que aconteça com você neste instante? <em>(Use uma frase positiva — essa é a sua meta.)</em></span>
+          </div>
+          <div class="question-item">
+            <span class="q-num">3</span>
+            <span class="q-text">Quando foi a primeira vez que você tomou consciência de alcançar essa meta?</span>
+          </div>
+          <div class="question-item">
+            <span class="q-num">4</span>
+            <span class="q-text">O que você vem fazendo para alcançar a sua meta?</span>
+          </div>
+          <div class="question-item">
+            <span class="q-num">5</span>
+            <span class="q-text">O que você faz e quer continuar fazendo para apoiar sua meta?</span>
+          </div>
+        </div>
+
+        <p>
+          A finalidade da Carta ao Futuro é escrevê-la para você mesmo, imaginando um encontro do seu Eu de hoje com o Eu do futuro. Isso te ajudará a fazer uma programação mental positiva em direção ao seu estado desejado. Imagine, então, o encontro entre você e você mesmo no futuro, comemorando aquilo que conseguiu. Descreva o que te ajudou a resolver seus problemas.
+        </p>
+        <p>
+          Na hora de escrever a carta, você estará vivendo uma vida maravilhosa, alegre e saudável — o tipo de vida que você gostaria de viver. Descreva como você está investindo seu tempo, onde vive, seu relacionamento, suas crenças, suas reflexões sobre o passado e o futuro. Vá ao máximo de detalhes possíveis e não se preocupe com a praticidade ou "realidade" das diferentes ideias e pensamentos que vão surgindo em sua mente.
+        </p>
+
+        <div class="closing-instruction">
+          <p>Ao se sentir surpreso, chorar, divertir-se, deliciar-se e, especialmente, se estiver indo da forma que está escrevendo a carta — <em>você está no caminho certo…</em></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="pg-footer" data-reveal>
+    <div class="pg-footer-rule">
+      <div class="pg-footer-bar"></div>
+      <div class="pg-footer-glyph">✦ ✦ ✦</div>
+      <div class="pg-footer-bar"></div>
+    </div>
+    <p>© Jornada em Autoria · Claudinei Silva &amp; Patricia Coelho · Todos os direitos reservados</p>
+  </div>
+
+</div>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('revealed'), i * 55);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
