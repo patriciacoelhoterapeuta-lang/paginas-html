@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jornada em Autoria — Introdução</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ─────────────────────────────────────────── */
+:root {
+  --parchment-mid:  #EAD9B4;
+  --cream:          #F0E6CC;
+  --ink:            #1C1410;
+  --ink-soft:       #362718;
+  --sepia:          #7A5C3A;
+  --sepia-light:    #B8966A;
+  --gold:           #9A7230;
+  --gold-soft:      #C49A45;
+  --rust:           #7A2E1A;
+  --sage:           #5A6B4E;
+  --edge:           rgba(122, 92, 58, 0.32);
+  --edge-light:     rgba(184, 150, 106, 0.22);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+/* Dark surround — makes the parchment "float" */
+body {
+  background: #1E150C;
+  background-image:
+    radial-gradient(ellipse 90% 50% at 50% 0%,   #32200E 0%, transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, #120C06 0%, transparent 70%);
+  min-height: 100vh;
+  font-family: 'Lora', Georgia, serif;
+  color: var(--ink);
+  overflow-x: hidden;
+  padding: 48px 16px 72px;
+}
+
+/* ── SCROLL REVEAL ───────────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+[data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+/* ── PAGE — the parchment sheet ─────────────────────── */
+.parchment {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  /* Layered parchment coloring */
+  background:
+    radial-gradient(ellipse 110% 40% at 50% 0%,   rgba(255,255,255,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 110% 30% at 50% 100%, rgba(0,0,0,0.10)       0%, transparent 60%),
+    radial-gradient(ellipse 40%  30% at 0%   0%,  rgba(90,60,20,0.18)    0%, transparent 55%),
+    radial-gradient(ellipse 40%  30% at 100% 0%,  rgba(90,60,20,0.14)    0%, transparent 55%),
+    radial-gradient(ellipse 40%  25% at 0%  100%, rgba(40,20,5,0.22)     0%, transparent 55%),
+    radial-gradient(ellipse 40%  25% at 100% 100%,rgba(40,20,5,0.22)     0%, transparent 55%),
+    linear-gradient(168deg, #F2E8D0 0%, #EDE0B8 35%, #E8D8A8 68%, #E0CFA0 100%);
+  padding: 72px 88px 80px;
+  overflow: hidden;
+  /* Subtle elevation */
+  box-shadow:
+    0  2px   4px rgba(0,0,0,0.25),
+    0  8px  24px rgba(0,0,0,0.35),
+    0 32px  80px rgba(0,0,0,0.50),
+    0 64px 120px rgba(0,0,0,0.30);
+}
+
+/* Paper grain */
+.parchment::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+
+/* All real content above texture */
+.parchment > * { position: relative; z-index: 1; }
+
+/* Double-rule border frame */
+.frame {
+  position: absolute;
+  inset: 26px;
+  border: 1px solid rgba(122, 92, 58, 0.30);
+  pointer-events: none;
+  z-index: 2;
+}
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(122, 92, 58, 0.13);
+}
+/* Corner dots */
+.frame::after {
+  content: '✦';
+  position: absolute;
+  top: -9px; left: -9px;
+  width: 18px; height: 18px;
+  font-size: 0.55rem;
+  color: var(--sepia-light);
+  display: flex; align-items: center; justify-content: center;
+  background: #EAD9B4;
+  text-align: center;
+  line-height: 18px;
+}
+.corner { position: absolute; font-size: 0.55rem; color: var(--sepia-light); background: #EAD9B4; width: 18px; height: 18px; text-align: center; line-height: 18px; z-index: 3; }
+.corner.tr { top: 17px;  right: 17px; }
+.corner.bl { bottom: 17px; left: 17px; }
+.corner.br { bottom: 17px; right: 17px; }
+
+/* ── SEAL ORNAMENT ───────────────────────────────────── */
+.seal {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 52px;
+}
+.seal-bar {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sepia-light), transparent);
+}
+.seal-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 0 24px;
+}
+.seal-glyph {
+  font-size: 1.1rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.3em;
+  line-height: 1;
+}
+.seal-label {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  white-space: nowrap;
+}
+
+/* ── HEADER ──────────────────────────────────────────── */
+header {
+  text-align: center;
+  margin-bottom: 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--edge-light);
+}
+.eyebrow {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  margin-bottom: 22px;
+}
+h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 0;
+}
+h1 em { font-style: italic; color: var(--rust); }
+
+.rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 26px 0;
+  color: var(--gold-soft);
+  font-size: 0.75rem;
+  letter-spacing: 0.5em;
+}
+.rule::before, .rule::after {
+  content: '';
+  width: 72px;
+  height: 1px;
+}
+.rule::before { background: linear-gradient(to right, transparent, var(--sepia-light)); }
+.rule::after  { background: linear-gradient(to left,  transparent, var(--sepia-light)); }
+
+.subtitle {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sepia);
+  line-height: 1.65;
+  max-width: 440px;
+  margin: 0 auto 32px;
+}
+.author-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 22px;
+  border: 1px solid var(--edge-light);
+  background: rgba(122, 92, 58, 0.05);
+}
+.monogram {
+  width: 38px; height: 38px;
+  border: 1px solid var(--sepia-light);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--rust);
+  flex-shrink: 0;
+}
+.author-name-text {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  display: block;
+  text-align: left;
+}
+.author-role-text {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.75rem;
+  color: var(--sepia);
+  font-style: italic;
+  display: block;
+  text-align: left;
+}
+
+/* ── BODY TEXT ───────────────────────────────────────── */
+p {
+  font-family: 'Lora', serif;
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  line-height: 1.95;
+  margin-bottom: 20px;
+}
+.drop-cap::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.72;
+  margin: 8px 10px 0 0;
+  color: var(--rust);
+}
+
+/* ── SECTION LABEL ───────────────────────────────────── */
+.sec-label {
+  text-align: center;
+  margin: 52px 0 26px;
+}
+.sec-label span {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.sec-label span::before,
+.sec-label span::after {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background: var(--sepia-light);
+}
+
+/* ── ILLUMINATED QUOTE ───────────────────────────────── */
+.quote-block {
+  margin: 44px -12px;
+  padding: 40px 52px;
+  position: relative;
+  text-align: center;
+  border-top: 1px solid var(--edge-light);
+  border-bottom: 1px solid var(--edge-light);
+  background: linear-gradient(180deg, rgba(154,114,48,0.045) 0%, rgba(154,114,48,0.015) 100%);
+}
+.quote-block::before {
+  content: '❧';
+  position: absolute;
+  left: 18px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-soft);
+  font-size: 1rem;
+  opacity: 0.7;
+}
+.quote-block::after {
+  content: '❧';
+  position: absolute;
+  right: 18px; top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+  color: var(--gold-soft);
+  font-size: 1rem;
+  opacity: 0.7;
+}
+.quote-block p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ── 84 DAYS ─────────────────────────────────────────── */
+.days-mark {
+  text-align: center;
+  margin: 48px 0;
+  position: relative;
+}
+.days-mark::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 1px;
+  background: var(--edge-light);
+  transform: translateY(-50%);
+}
+.days-inner {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background: var(--parchment-mid);
+  padding: 0 36px;
+}
+.days-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--sepia-light);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.days-sub {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  margin-top: -6px;
+}
+
+/* ── STEPS ───────────────────────────────────────────── */
+.steps { margin: 36px 0; }
+.step {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--edge-light);
+}
+.step:first-child { border-top: 1px solid var(--edge-light); }
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-style: italic;
+  color: rgba(184, 150, 106, 0.45);
+  line-height: 1;
+  min-width: 38px;
+  padding-top: 2px;
+}
+.step h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.98rem;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+.step p { font-size: 0.95rem; margin: 0; line-height: 1.8; }
+
+/* ── APAR SCROLL ─────────────────────────────────────── */
+.apar-scroll {
+  margin: 44px 0;
+  padding: 34px 44px;
+  border: 1px solid rgba(122, 92, 58, 0.28);
+  background: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 100%);
+  position: relative;
+  text-align: center;
+}
+.apar-scroll::before {
+  content: 'Ações Para Acelerar Resultados';
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--rust);
+  color: #F0E6CC;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 3px 18px;
+  white-space: nowrap;
+}
+.apar-scroll h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.02rem;
+  font-style: italic;
+  color: var(--rust);
+  margin-bottom: 10px;
+}
+.apar-scroll p { font-size: 0.97rem; margin: 0; }
+
+/* ── SCRIBE NOTE ─────────────────────────────────────── */
+.scribe-note {
+  margin: 40px 0;
+  padding: 28px 36px;
+  border-left: 2px solid rgba(90,107,78,0.5);
+  background: linear-gradient(to right, rgba(90,107,78,0.06), transparent 80%);
+}
+.scribe-note-label {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sage);
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 8px;
+}
+.scribe-note p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.06rem;
+  color: var(--sage);
+  font-style: italic;
+  margin: 0;
+  line-height: 1.75;
+}
+
+/* ── CLOSING ─────────────────────────────────────────── */
+.closing {
+  margin-top: 52px;
+  padding-top: 44px;
+  border-top: 1px solid var(--edge-light);
+}
+.closing-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+.question-final {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--rust);
+  text-align: center;
+  margin: 52px 0 56px;
+}
+.question-final::before,
+.question-final::after {
+  content: '—';
+  font-weight: 400;
+  color: var(--sepia-light);
+  margin: 0 14px;
+}
+
+/* ── SIGNATURE ───────────────────────────────────────── */
+.signature {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 44px;
+  padding-top: 32px;
+  border-top: 1px solid var(--edge-light);
+}
+.sig-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-style: italic;
+  color: var(--rust);
+  line-height: 1;
+}
+.sig-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  margin-top: 4px;
+}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.pg-footer {
+  margin-top: 56px;
+  padding-top: 28px;
+}
+.pg-footer-rule {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 14px;
+}
+.pg-footer-bar {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sepia-light), transparent);
+}
+.pg-footer-glyph {
+  padding: 0 20px;
+  font-size: 0.85rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.4em;
+  opacity: 0.8;
+}
+.pg-footer p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--sepia);
+  text-align: center;
+  opacity: 0.65;
+  margin: 0;
+}
+
+/* ── ENTRANCE ────────────────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.9s ease forwards;
+}
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.3s; }
+.fade-in:nth-child(3) { animation-delay: 0.5s; }
+.fade-in:nth-child(4) { animation-delay: 0.7s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  body { padding: 16px 8px 48px; }
+  .parchment { padding: 44px 28px 52px; }
+  .frame { inset: 14px; }
+  h1 { font-size: 1.9rem; }
+  .quote-block { margin: 36px -8px; padding: 30px 32px; }
+  .days-num { font-size: 4.5rem; }
+  .apar-scroll { padding: 28px 22px; }
+  .step { gap: 16px; }
+  .parchment::before { display: none; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="parchment">
+
+  <!-- Corner marks -->
+  <div class="frame"></div>
+  <div class="corner tr">✦</div>
+  <div class="corner bl">✦</div>
+  <div class="corner br">✦</div>
+
+  <!-- Top seal -->
+  <div class="seal fade-in">
+    <div class="seal-bar"></div>
+    <div class="seal-center">
+      <div class="seal-glyph">✦ ✦ ✦</div>
+      <div class="seal-label">Jornada em Autoria · Programa de 84 Dias</div>
+    </div>
+    <div class="seal-bar"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="fade-in">
+      <div class="eyebrow">Desenvolvimento Pessoal &amp; Inteligência Emocional</div>
+    </div>
+    <div class="fade-in">
+      <h1>Como sua vida pode dar um salto para o <em>próximo nível</em> de evolução?</h1>
+    </div>
+    <div class="fade-in">
+      <div class="rule">✦</div>
+      <p class="subtitle">Despertar seus poderes interiores é o único caminho real para a plenitude.</p>
+    </div>
+    <div class="fade-in">
+      <div class="author-stamp">
+        <div class="monogram">C</div>
+        <div>
+          <span class="author-name-text">Claudinei Silva &amp; Patricia Coelho</span>
+          <span class="author-role-text">Terapeutas · Autores da Jornada</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sec 1 -->
+  <div data-reveal>
+    <div class="sec-label"><span>A Pergunta que Muda Tudo</span></div>
+    <p class="drop-cap">
+      Como podemos crescer como pessoas, evoluir nossa consciência, avançar na prosperidade em todas as suas formas e produzir felicidade autêntica — em nossa vida e na vida das demais pessoas?
+    </p>
+    <p>
+      A resposta está dentro de você. Ela existe quando você desperta os seus poderes interiores — poderes maiores que suas habilidades e seus conhecimentos, que fazem de você um ser conectado e profundamente comprometido com as verdades universais do amor, da compaixão e da necessidade de impactar positivamente a vida do maior número de pessoas.
+    </p>
+    <div class="quote-block">
+      <p>Não há nada no mundo exterior que supere o que existe no seu mundo interior.</p>
+    </div>
+  </div>
+
+  <!-- Sec 2 -->
+  <div data-reveal>
+    <div class="sec-label"><span>O Novo Ciclo</span></div>
+    <p>
+      Precisamos construir um <strong>Novo Ciclo</strong> — uma nova forma de conduzir nossos pensamentos e nossa vida. Isso nos torna seres humanos mais empáticos, pais mais completos e presentes, líderes mais comprometidos e inspiradores.
+    </p>
+    <div class="days-mark">
+      <div class="days-inner">
+        <span class="days-num">84</span>
+        <span class="days-sub">dias de vivência real de mudança</span>
+      </div>
+    </div>
+    <p>
+      Todas as lições você irá viver no decorrer de 90 dias. É uma forma de se encontrar com verdades pessoais que você desconhecia em si mesmo. Com este programa e com seu comprometimento, inicia-se um processo de <strong>12 semanas</strong> de prolongamento dessa vivência de mudança comportamental e inteligência emocional e espiritual.
+    </p>
+  </div>
+
+  <!-- Sec 3 -->
+  <div data-reveal>
+    <div class="sec-label"><span>Como Funciona a Plataforma</span></div>
+    <p>
+      Aqui na plataforma <strong>Jornada em Autoria</strong>, a cada dia, você terá uma missão a ser realizada. Essas missões foram organizadas de acordo com longos processos de estudo de desenvolvimento humano desenvolvidos por Claudinei e Patricia Coelho.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">I</div>
+        <div>
+          <h4>Missões Diárias com Sequência Lógica</h4>
+          <p>Cada dia tem uma missão clara. Elas seguem uma sequência pensada para preservar sua motivação de forma genuína — não apenas após os encontros, mas ao longo de toda a jornada.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">II</div>
+        <div>
+          <h4>APAR — Ações Para Acelerar Resultados</h4>
+          <p>Práticas concretas para que você se torne a melhor versão de si mesmo. Cada APAR conecta a teoria ao seu cotidiano de forma direta e mensurável.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">III</div>
+        <div>
+          <h4>Nota Emocional Diária</h4>
+          <p>A cada final de dia, você atribui uma nota emocional ao seu estado — ao modo como você está se percebendo. Um registro de presença consigo mesmo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="apar-scroll">
+      <h3>O que são as Ações Para Acelerar Resultados?</h3>
+      <p>São práticas desenhadas para que você não apenas leia sobre transformação, mas a <em>experiencie</em> no pleno sentido da palavra.</p>
+    </div>
+  </div>
+
+  <!-- Sec 4 -->
+  <div data-reveal>
+    <div class="sec-label"><span>O que te Espera ao Final</span></div>
+    <p>
+      A recompensa para quem for capaz de passar por todos os 84 dias desse processo é <strong>uma vida cheia</strong> — e não mais uma vida vazia.
+    </p>
+    <p>
+      Os questionamentos, as reclamações e a tristeza constante com o que somos e o que temos dão espaço para certezas e projetos, para ações e avaliações mais maduras e corajosas.
+    </p>
+    <div class="scribe-note">
+      <span class="scribe-note-label">Nota do Autor</span>
+      <p>Criamos riqueza interior e também riqueza material. Nos conectamos com o melhor de nós e dos outros — e isso constrói um novo ciclo em nossas vidas.</p>
+    </div>
+  </div>
+
+  <!-- Closing -->
+  <div class="closing" data-reveal>
+    <div class="sec-label"><span>Uma Certeza que Carrego</span></div>
+    <p class="closing-text">
+      Tenho certeza de que você conquistará a plenitude deste processo. Tenho certeza de que você despertará seu poder interior e alcançará um novo nível evolutivo.
+    </p>
+    <p>
+      Tenho certeza de que você será um agente transformador da sua vida, da vida da sua família, dos seus clientes e de todas as pessoas que compõem os sistemas aos quais você pertence.
+    </p>
+    <p><strong>Eu acredito no seu poder.</strong></p>
+
+    <div class="question-final">E você?</div>
+
+    <div class="signature">
+      <span class="sig-name">Claudinei Silva</span>
+      <span class="sig-title">Terapeuta · Jornada em Autoria</span>
+    </div>
+  </div>
+
+  <!-- Footer seal -->
+  <div class="pg-footer" data-reveal>
+    <div class="pg-footer-rule">
+      <div class="pg-footer-bar"></div>
+      <div class="pg-footer-glyph">✦ ✦ ✦</div>
+      <div class="pg-footer-bar"></div>
+    </div>
+    <p>© Jornada em Autoria · Claudinei Silva &amp; Patricia Coelho · Todos os direitos reservados</p>
+  </div>
+
+</div><!-- /parchment -->
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('revealed'), i * 55);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
