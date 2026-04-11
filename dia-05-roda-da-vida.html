@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jornada em Autoria — 1ª Semana · Dia 5 · Roda da Vida</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --parchment-mid:  #EAD9B4;
+  --cream:          #F0E6CC;
+  --ink:            #1C1410;
+  --ink-soft:       #362718;
+  --sepia:          #7A5C3A;
+  --sepia-light:    #B8966A;
+  --gold:           #9A7230;
+  --gold-soft:      #C49A45;
+  --rust:           #7A2E1A;
+  --sage:           #5A6B4E;
+  --edge-light:     rgba(184, 150, 106, 0.22);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #1E150C;
+  background-image:
+    radial-gradient(ellipse 90% 50% at 50% 0%,   #32200E 0%, transparent 70%),
+    radial-gradient(ellipse 70% 40% at 50% 100%, #120C06 0%, transparent 70%);
+  min-height: 100vh;
+  font-family: 'Lora', Georgia, serif;
+  color: var(--ink);
+  overflow-x: hidden;
+  padding: 48px 16px 72px;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+[data-reveal].revealed { opacity: 1; transform: translateY(0); }
+
+/* ── PARCHMENT ───────────────────────────────────────── */
+.parchment {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  background:
+    radial-gradient(ellipse 110% 40% at 50% 0%,   rgba(255,255,255,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 110% 30% at 50% 100%, rgba(0,0,0,0.10)       0%, transparent 60%),
+    radial-gradient(ellipse 40%  30% at 0%   0%,  rgba(90,60,20,0.18)    0%, transparent 55%),
+    radial-gradient(ellipse 40%  30% at 100% 0%,  rgba(90,60,20,0.14)    0%, transparent 55%),
+    radial-gradient(ellipse 40%  25% at 0%  100%, rgba(40,20,5,0.22)     0%, transparent 55%),
+    radial-gradient(ellipse 40%  25% at 100% 100%,rgba(40,20,5,0.22)     0%, transparent 55%),
+    linear-gradient(168deg, #F2E8D0 0%, #EDE0B8 35%, #E8D8A8 68%, #E0CFA0 100%);
+  padding: 72px 88px 80px;
+  overflow: hidden;
+  box-shadow:
+    0  2px   4px rgba(0,0,0,0.25),
+    0  8px  24px rgba(0,0,0,0.35),
+    0 32px  80px rgba(0,0,0,0.50),
+    0 64px 120px rgba(0,0,0,0.30);
+}
+.parchment::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+.parchment > * { position: relative; z-index: 1; }
+
+.frame { position: absolute; inset: 26px; border: 1px solid rgba(122, 92, 58, 0.30); pointer-events: none; z-index: 2; }
+.frame::before { content: ''; position: absolute; inset: 5px; border: 1px solid rgba(122, 92, 58, 0.13); }
+.corner { position: absolute; font-size: 0.55rem; color: var(--sepia-light); background: #EAD9B4; width: 18px; height: 18px; text-align: center; line-height: 18px; z-index: 3; }
+.corner.tl { top: 17px; left: 17px; }
+.corner.tr { top: 17px; right: 17px; }
+.corner.bl { bottom: 17px; left: 17px; }
+.corner.br { bottom: 17px; right: 17px; }
+
+/* ── SEAL ────────────────────────────────────────────── */
+.seal { display: flex; align-items: center; margin-bottom: 52px; }
+.seal-bar { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--sepia-light), transparent); }
+.seal-center { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 0 24px; }
+.seal-glyph { font-size: 1.1rem; color: var(--gold-soft); letter-spacing: 0.3em; line-height: 1; }
+.seal-label { font-family: 'Crimson Pro', serif; font-size: 0.64rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--sepia); white-space: nowrap; }
+
+/* ── DAY BADGE ───────────────────────────────────────── */
+.day-badge { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 36px; }
+.badge-week { font-family: 'Crimson Pro', serif; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--sepia); padding: 6px 16px; border: 1px solid var(--edge-light); background: rgba(122,92,58,0.05); }
+.badge-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--sepia-light); opacity: 0.5; }
+.badge-day { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-style: italic; color: var(--rust); }
+
+/* ── HEADER ──────────────────────────────────────────── */
+header { text-align: center; margin-bottom: 56px; padding-bottom: 48px; border-bottom: 1px solid var(--edge-light); }
+h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.9rem, 4.2vw, 2.9rem); font-weight: 700; line-height: 1.2; color: var(--ink); letter-spacing: -0.01em; }
+h1 em { font-style: italic; color: var(--rust); }
+.rule { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 24px 0; color: var(--gold-soft); font-size: 0.75rem; letter-spacing: 0.5em; }
+.rule::before { content: ''; width: 72px; height: 1px; background: linear-gradient(to right, transparent, var(--sepia-light)); }
+.rule::after  { content: ''; width: 72px; height: 1px; background: linear-gradient(to left, transparent, var(--sepia-light)); }
+.subtitle { font-family: 'Crimson Pro', serif; font-size: 1.12rem; font-style: italic; font-weight: 300; color: var(--sepia); line-height: 1.65; max-width: 460px; margin: 0 auto; }
+
+/* ── BODY TEXT ───────────────────────────────────────── */
+p { font-family: 'Lora', serif; font-size: 1.02rem; color: var(--ink-soft); line-height: 1.95; margin-bottom: 20px; }
+.drop-cap::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.72;
+  margin: 8px 10px 0 0;
+  color: var(--rust);
+}
+
+/* ── SECTION LABEL ───────────────────────────────────── */
+.sec-label { text-align: center; margin: 52px 0 26px; }
+.sec-label span { font-family: 'Crimson Pro', serif; font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--sepia); display: inline-flex; align-items: center; gap: 14px; }
+.sec-label span::before, .sec-label span::after { content: ''; display: inline-block; width: 36px; height: 1px; background: var(--sepia-light); }
+
+/* ── ILLUMINATED QUOTE ───────────────────────────────── */
+.quote-block {
+  margin: 44px -12px;
+  padding: 40px 52px;
+  position: relative;
+  text-align: center;
+  border-top: 1px solid var(--edge-light);
+  border-bottom: 1px solid var(--edge-light);
+  background: linear-gradient(180deg, rgba(154,114,48,0.045) 0%, rgba(154,114,48,0.015) 100%);
+}
+.quote-block::before { content: '❧'; position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--gold-soft); font-size: 1rem; opacity: 0.7; }
+.quote-block::after  { content: '❧'; position: absolute; right: 18px; top: 50%; transform: translateY(-50%) scaleX(-1); color: var(--gold-soft); font-size: 1rem; opacity: 0.7; }
+.quote-block p { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-style: italic; color: var(--ink); line-height: 1.6; margin: 0 auto; max-width: 440px; }
+
+/* ── SCRIBE NOTE ─────────────────────────────────────── */
+.scribe-note { margin: 40px 0; padding: 28px 36px; border-left: 2px solid rgba(90,107,78,0.5); background: linear-gradient(to right, rgba(90,107,78,0.06), transparent 80%); }
+.scribe-note-label { font-family: 'Crimson Pro', serif; font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--sage); opacity: 0.8; display: block; margin-bottom: 8px; }
+.scribe-note p { font-family: 'Crimson Pro', serif; font-size: 1.05rem; color: var(--sage); font-style: italic; margin: 0; line-height: 1.75; }
+
+/* ── 4 CAMPOS DA RODA ────────────────────────────────── */
+.campos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin: 44px 0;
+  border: 1px solid var(--edge-light);
+  overflow: hidden;
+}
+.campo {
+  padding: 24px 26px;
+  background: rgba(255,255,255,0.06);
+  border-right: 1px solid var(--edge-light);
+  border-bottom: 1px solid var(--edge-light);
+}
+.campo:nth-child(even) { border-right: none; }
+.campo:nth-child(3), .campo:nth-child(4) { border-bottom: none; }
+.campo-icon { font-size: 1rem; opacity: 0.55; display: block; margin-bottom: 8px; }
+.campo-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--rust);
+  display: block;
+  margin-bottom: 8px;
+}
+.campo-aspects {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.88rem;
+  color: var(--sepia);
+  line-height: 1.65;
+}
+
+/* ── APAR BLOCK ──────────────────────────────────────── */
+.apar-block {
+  margin: 52px 0 0;
+  border: 1px solid rgba(122, 92, 58, 0.28);
+  background: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 100%);
+}
+.apar-header { display: flex; align-items: center; border-bottom: 1px solid rgba(122, 92, 58, 0.18); }
+.apar-tab { background: var(--rust); color: #F0E6CC; font-family: 'Crimson Pro', serif; font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; padding: 10px 20px; white-space: nowrap; flex-shrink: 0; }
+.apar-title-bar { flex: 1; padding: 10px 20px; font-family: 'Playfair Display', serif; font-size: 0.9rem; font-style: italic; color: var(--sepia); }
+.apar-body { padding: 36px 44px 40px; }
+.apar-body > p { font-size: 1rem; margin-bottom: 24px; }
+
+/* ── ACORDEÃO DAS 12 ÁREAS ───────────────────────────── */
+.areas-note {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--sepia);
+  text-align: center;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.accordion { display: flex; flex-direction: column; gap: 0; }
+
+.acc-item {
+  border-bottom: 1px solid var(--edge-light);
+  overflow: hidden;
+}
+.acc-item:first-child { border-top: 1px solid var(--edge-light); }
+
+.acc-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 4px;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+.acc-trigger:hover { background: rgba(184,150,106,0.06); }
+.acc-trigger:hover .acc-num { color: var(--gold); }
+
+.acc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: rgba(184, 150, 106, 0.4);
+  line-height: 1;
+  min-width: 32px;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+.acc-area-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ink);
+  flex: 1;
+}
+.acc-campo {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+.acc-arrow {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--sepia-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--sepia);
+  flex-shrink: 0;
+  transition: transform 0.35s ease, background 0.2s;
+}
+.acc-item.open .acc-arrow {
+  transform: rotate(180deg);
+  background: var(--rust);
+  border-color: var(--rust);
+  color: #F0E6CC;
+}
+.acc-item.open .acc-area-name { color: var(--rust); }
+.acc-item.open .acc-num { color: var(--gold); }
+
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease;
+}
+.acc-inner {
+  padding: 6px 4px 24px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.q-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.q-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--sepia-light);
+  flex-shrink: 0;
+  margin-top: 9px;
+  opacity: 0.6;
+}
+.q-row-text {
+  font-family: 'Lora', serif;
+  font-size: 0.93rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+.q-row-text em { color: var(--sepia); }
+
+.metric-row {
+  margin-top: 10px;
+  padding: 14px 18px;
+  background: rgba(154,114,48,0.06);
+  border-left: 2px solid var(--gold-soft);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.metric-label {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.82rem;
+  color: var(--gold);
+  font-style: italic;
+  flex: 1;
+  line-height: 1.5;
+}
+.metric-scale {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(154,114,48,0.5);
+  white-space: nowrap;
+}
+
+/* ── CLOSING INSTRUCTION ─────────────────────────────── */
+.closing-instruction {
+  margin-top: 36px;
+  padding: 32px 40px;
+  border: 1px dashed rgba(122, 92, 58, 0.3);
+  background: rgba(154, 114, 48, 0.03);
+  text-align: center;
+  position: relative;
+}
+.closing-instruction::before { content: '✦'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #EAD9B4; padding: 0 10px; font-size: 0.7rem; color: var(--gold-soft); }
+.closing-instruction p { font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-style: italic; color: var(--sepia); margin: 0; line-height: 1.75; }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.pg-footer { margin-top: 56px; padding-top: 28px; }
+.pg-footer-rule { display: flex; align-items: center; margin-bottom: 14px; }
+.pg-footer-bar { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--sepia-light), transparent); }
+.pg-footer-glyph { padding: 0 20px; font-size: 0.85rem; color: var(--gold-soft); letter-spacing: 0.4em; opacity: 0.8; }
+.pg-footer p { font-family: 'Crimson Pro', serif; font-size: 0.68rem; letter-spacing: 0.15em; color: var(--sepia); text-align: center; opacity: 0.65; margin: 0; }
+
+/* ── ENTRANCE ────────────────────────────────────────── */
+.fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.9s ease forwards; }
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.28s; }
+.fade-in:nth-child(3) { animation-delay: 0.46s; }
+.fade-in:nth-child(4) { animation-delay: 0.64s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 640px) {
+  body { padding: 16px 8px 48px; }
+  .parchment { padding: 44px 28px 52px; }
+  .frame { inset: 14px; }
+  h1 { font-size: 1.8rem; }
+  .quote-block { margin: 36px -8px; padding: 30px 32px; }
+  .campos-grid { grid-template-columns: 1fr; }
+  .campo { border-right: none; }
+  .campo:nth-child(n) { border-bottom: 1px solid var(--edge-light); }
+  .campo:last-child { border-bottom: none; }
+  .apar-body { padding: 24px 20px 28px; }
+  .acc-inner { padding: 6px 4px 20px 34px; }
+  .acc-campo { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="parchment">
+
+  <div class="frame"></div>
+  <div class="corner tl">✦</div>
+  <div class="corner tr">✦</div>
+  <div class="corner bl">✦</div>
+  <div class="corner br">✦</div>
+
+  <!-- Seal -->
+  <div class="seal fade-in">
+    <div class="seal-bar"></div>
+    <div class="seal-center">
+      <div class="seal-glyph">✦ ✦ ✦</div>
+      <div class="seal-label">Jornada em Autoria · 1ª Semana · Dia 5</div>
+    </div>
+    <div class="seal-bar"></div>
+  </div>
+
+  <!-- Day badge -->
+  <div class="day-badge fade-in">
+    <span class="badge-week">1ª Semana</span>
+    <div class="badge-dot"></div>
+    <span class="badge-day">Quinto Dia</span>
+  </div>
+
+  <!-- Header -->
+  <header class="fade-in">
+    <h1>Eu Quero <em>Me Conhecer</em></h1>
+    <div class="rule">✦</div>
+    <p class="subtitle">A Roda da Vida — um mapeamento honesto de quem você é no tempo presente.</p>
+  </header>
+
+  <!-- Sec 1 -->
+  <div data-reveal>
+    <div class="sec-label"><span>O que é a Roda da Vida</span></div>
+    <p class="drop-cap">
+      Dentre as ferramentas de psicodesenvolvimento, as Rodas estão entre as mais importantes e as mais utilizadas. Graças à sua simplicidade, são ferramentas fáceis de manusear — mas essa simplicidade não significa pouco valor. Muito pelo contrário.
+    </p>
+    <p>
+      O formato circular da Roda da Vida representa toda a compreensão cíclica do Eu no momento em que ele se encontra. Essa compreensão não é estrutural nem definitiva — pode variar conforme o contexto de vida pelo qual você estiver passando. Por isso é fundamental ser sincero para obter os resultados que mais se aproximam da sua realidade.
+    </p>
+
+    <div class="quote-block">
+      <p>Não existem resultados certos ou errados. A Roda representa um símbolo de autoconhecimento, com todo o poder do círculo e sua universalidade.</p>
+    </div>
+
+    <p>
+      Muito utilizada no consultório de Claudinei Silva, a Roda da Vida auxilia a obter uma visão da harmonia entre os aspectos pessoais, profissionais, relacionais e sociais — apontando tanto linearidade quanto descontinuidade, indicando pontos que precisam de mais atenção e equilíbrio.
+    </p>
+
+    <div class="scribe-note">
+      <span class="scribe-note-label">O que você ganha com isso</span>
+      <p>Com a Roda da Vida, deixamos o campo das suposições e obtemos dados reais. Você terá informações concretas para repensar sua vida, ressignificá-la e criar novas estratégias de desenvolvimento.</p>
+    </div>
+  </div>
+
+  <!-- Sec 2: 4 campos -->
+  <div data-reveal>
+    <div class="sec-label"><span>Os 4 Campos da Roda</span></div>
+    <p>Na prática, a Roda da Vida está dividida em quatro campos — cada um com três aspectos, totalizando <strong>doze áreas de atributos</strong> a serem avaliadas de 0 a 10:</p>
+
+    <div class="campos-grid">
+      <div class="campo">
+        <span class="campo-icon">◎</span>
+        <span class="campo-title">Pessoal</span>
+        <span class="campo-aspects">Saúde e disposição · Desenvolvimento intelectual · Equilíbrio emocional</span>
+      </div>
+      <div class="campo">
+        <span class="campo-icon">◈</span>
+        <span class="campo-title">Profissional</span>
+        <span class="campo-aspects">Realização e propósito · Recursos financeiros · Contribuição social</span>
+      </div>
+      <div class="campo">
+        <span class="campo-icon">◇</span>
+        <span class="campo-title">Relacionamentos</span>
+        <span class="campo-aspects">Família · Relacionamento amoroso · Vida social</span>
+      </div>
+      <div class="campo">
+        <span class="campo-icon">✿</span>
+        <span class="campo-title">Qualidade de Vida</span>
+        <span class="campo-aspects">Criatividade · Hobbies e diversão · Plenitude e felicidade · Espiritualidade</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- APAR com acordeão das 12 áreas -->
+  <div data-reveal>
+    <div class="apar-block">
+      <div class="apar-header">
+        <div class="apar-tab">APAR© · Dia 5</div>
+        <div class="apar-title-bar">Roda da Vida — Sua Missão de Hoje</div>
+      </div>
+      <div class="apar-body">
+
+        <p>Pense neste momento como uma oportunidade de fazer um mapeamento profundo da sua vida. Tudo depende da sua capacidade de olhar para si mesmo com sinceridade e autoaceitação. Explore cada área abaixo — abra, reflita e atribua sua nota de 0 a 10:</p>
+
+        <p class="areas-note">Toque em cada área para expandir as perguntas de reflexão</p>
+
+        <div class="accordion">
+
+          <!-- 1. Saúde -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">1</span>
+              <span class="acc-area-name">Saúde e Disposição</span>
+              <span class="acc-campo">Pessoal</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que significa saúde para você? Como está sua saúde atualmente?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Como está a saúde de pessoas próximas — seus stakeholders?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que é disposição e vitalidade para você? Como está sua energia ao acordar e se movimentar para o trabalho?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Em que nível de energia você se enquadra dentro de casa? Você se considera extremamente saudável?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Tem mais alguma coisa sobre sua saúde ou a saúde de sua família que queira compartilhar?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Com a memória do tempo recente (menos de 30 dias), que nota você dá para sua energia, vitalidade e saúde?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Desenvolvimento Intelectual -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">2</span>
+              <span class="acc-area-name">Desenvolvimento Intelectual</span>
+              <span class="acc-campo">Pessoal</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que é intelectualidade para você? Como está seu desenvolvimento intelectual pessoal e profissional?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Poderia estar melhor? Em quais áreas especificamente?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Como você assiste a um filme — como espectador ou como aluno disposto a aprender algo profundo?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você gosta de ler livros? Quais foram os últimos dois que você leu? Leu inteiros ou parcialmente? Por quê?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você se considera mais Self 1 ou Self 2? Sua resposta nasceu do intelecto ou do coração?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você acredita que todo mundo já nasce gênio? Você potencializou sua genialidade? O que significa para você: <em>"A genialidade é a divindade do homem"?</em></span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Aqui e agora, como você avalia seu desenvolvimento intelectual e sua capacidade de aprendizagem?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Equilíbrio Emocional -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">3</span>
+              <span class="acc-area-name">Equilíbrio Emocional</span>
+              <span class="acc-campo">Pessoal</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Qual é o seu conceito de equilíbrio emocional? Você se considera prudente, comedido e moderado?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você considera que tem bom domínio sobre si mesmo? O que é resiliência para você?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Na maior parte do tempo, você se considera mais estável ou menos estável?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quais são os 3 fatores que mais te tiram do sério?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Em quais situações você se sente muito equilibrado e em paz consigo mesmo?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Suas decisões no ano passado foram mais assertivas ou trouxeram muitas adversidades?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label"><em>0 = inferno · 5 = terra · 10 = divindade do céu.</em> Que nota você dá para seu equilíbrio emocional?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Realização e Propósito -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">4</span>
+              <span class="acc-area-name">Realização e Propósito</span>
+              <span class="acc-campo">Profissional</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que significa propósito na sua vida? O que significa realização para você?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você se sente realizado dentro de sua casa e em sua família? E profissionalmente?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quanta congruência há entre a maneira como você vive atualmente e o seu propósito de vida? Qual a maior congruência e a maior incongruência?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você vive um momento de estabilidade ou de transição? Sabe explicar o porquê?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você considera que há aspectos em sua vida pessoal ou profissional que devem ser mudados a curto prazo? Quais?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">O quanto você acredita que já trilhou em suas mais plenas realizações e propósito?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Recursos Financeiros -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">5</span>
+              <span class="acc-area-name">Recursos Financeiros</span>
+              <span class="acc-campo">Profissional</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Qual é o significado do dinheiro para você? O que significa "ser rico"?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quais suas melhores crenças sobre o dinheiro? E quais são mais incongruentes com a riqueza?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text"><em>"Ninguém dá o que não tem."</em> Faz sentido para você? Tem algo que gostaria de compartilhar e ainda não tem?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quais foram suas maiores estratégias no último ano para atingir equilíbrio financeiro? O que faz de melhor com seu dinheiro — e o que faz de pior?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você planeja seus gastos? Tem reservas para imprevistos? Por quanto tempo sobreviveria se precisasse parar de trabalhar?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Que nota você dá para sua situação e controle financeiro no tempo presente?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Contribuição Social -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">6</span>
+              <span class="acc-area-name">Contribuição Social</span>
+              <span class="acc-campo">Profissional</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que você entende por contribuição social? Quanto seu trabalho interfere positivamente na vida das pessoas?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você acredita que tem uma performance regular, boa ou extraordinária em contribuição social?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você faz algum trabalho social específico? Gostaria de fazer? Qual seria?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Qual seu maior feito de contribuição social em toda sua história de vida?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você separa o lixo? Tem hábitos de preservação ambiental? Suas ações englobam igualdade e humanidade em todos os sistemas em que você está inserido?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Que nota você dá para sua contribuição social no tempo presente?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Família -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">7</span>
+              <span class="acc-area-name">Relacionamentos · Família</span>
+              <span class="acc-campo">Relacionamentos</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que é família para você? Quem é a sua família — quais nomes vêm à sua cabeça agora?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Que parte do seu corpo se movimenta ao pensar nessas pessoas? Esse sentimento é bom?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Como é sua relação com sua família? O que você mais gosta de fazer em casa? E o que menos gosta?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quais são as 3 memórias mais positivas que você tem de sua família ao longo de toda sua vida?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Que nota você dá para seu relacionamento e entrosamento dentro de casa e em família?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Relacionamento Amoroso -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">8</span>
+              <span class="acc-area-name">Relacionamento Amoroso</span>
+              <span class="acc-campo">Relacionamentos</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Qual é a importância do relacionamento amoroso na sua vida?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você é solteiro, casado, companheiro ou tem algum relacionamento sério? Como está sua intimidade?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quais são os 3 grandes amores da sua história? Que tipos de memórias e lembranças você traz das suas relações mais íntimas?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você está vivendo uma fase de positividade consigo mesmo? Se pudesse voltar no tempo para um dia especial de amorosidade, para que dia voltaria? Por quê?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Que nota você dá para sua vida afetiva, íntima e amorosa?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. Vida Social -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">9</span>
+              <span class="acc-area-name">Vida Social</span>
+              <span class="acc-campo">Relacionamentos</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Qual o significado de social para você? Você acredita que tem uma boa vida social?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você vai a cinemas, teatros ou eventos frequentemente? Como está seu network?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Seus amigos são em sua maioria mais antigos ou mais recentes? Você tem facilidade de fazer novas amizades?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quais são os três últimos amigos que você conheceu? Faz quanto tempo?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Que nota você dá para sua plenitude e felicidade com relação à sua vida social?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10. Criatividade -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">10</span>
+              <span class="acc-area-name">Criatividade · Hobbies & Diversão</span>
+              <span class="acc-campo">Qualidade de Vida</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que é criatividade para você? Você se considera uma pessoa criativa? Criatividade é algo nato ou pode ser desenvolvido?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Qual é a coisa mais criativa que você fez? E a menos criativa?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quais são seus hobbies? Tem algum que vem desde a infância? Seu hobbie predileto está ligado à sua missão de vida?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que você mais gosta de fazer nos finais de semana? O que verdadeiramente te encanta e fascina?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Que nota você dá para sua capacidade e qualidade criativa?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 11. Plenitude e Felicidade -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">11</span>
+              <span class="acc-area-name">Plenitude e Felicidade</span>
+              <span class="acc-campo">Qualidade de Vida</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Qual sua percepção sobre plenitude e felicidade? Você se considera uma pessoa feliz e plena? Por quê?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text"><em>"Plenitude é um estado de luz, em que você decide estar feliz em qualquer circunstância."</em> Isso faz sentido para você?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Fale sobre 3 momentos maravilhosos em que você estava extremamente feliz, pleno e realizado.</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Quais as pequenas ações do dia a dia que te fazem muito feliz? Sua missão pessoal está alinhada com a profissional?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Se você não tivesse sua profissão atual, o que gostaria de fazer para ficar ainda mais pleno e realizado?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Levando em consideração os momentos em que você se encontra pleno e feliz, que nota você daria para seu estado de luz?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 12. Espiritualidade -->
+          <div class="acc-item">
+            <button class="acc-trigger" onclick="toggle(this)">
+              <span class="acc-num">12</span>
+              <span class="acc-area-name">Espiritualidade</span>
+              <span class="acc-campo">Qualidade de Vida</span>
+              <span class="acc-arrow">▾</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-inner">
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Qual é sua percepção sobre espiritualidade? Você se considera uma pessoa espiritualizada?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">O que você faz para evoluir seu lado espiritual? Qual sua relação com sua voz interior?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você tem alguma crença religiosa? Você acredita em Deus? Quais são seus 3 maiores valores espirituais?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">De que forma a espiritualidade influencia sua vida pessoal e profissional?</span></div>
+                <div class="q-row"><span class="q-dot"></span><span class="q-row-text">Você se considera uma pessoa de fé? Uma pessoa abençoada?</span></div>
+                <div class="metric-row">
+                  <span class="metric-label">Que nota você dá para a sua espiritualidade?</span>
+                  <span class="metric-scale">0 — 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /accordion -->
+
+        <div class="closing-instruction">
+          <p>Ao concluir todas as áreas, observe quais notas foram mais baixas. <em>Essas são as regiões da sua vida que pedem mais atenção e cuidado agora.</em> Registre seus insights e traga-os para a plataforma.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="pg-footer" data-reveal>
+    <div class="pg-footer-rule">
+      <div class="pg-footer-bar"></div>
+      <div class="pg-footer-glyph">✦ ✦ ✦</div>
+      <div class="pg-footer-bar"></div>
+    </div>
+    <p>© Jornada em Autoria · Claudinei Silva &amp; Patricia Coelho · Todos os direitos reservados</p>
+  </div>
+
+</div>
+
+<script>
+  // Accordion
+  function toggle(btn) {
+    const item = btn.closest('.acc-item');
+    const body = item.querySelector('.acc-body');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.acc-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.acc-body').style.maxHeight = '0';
+    });
+
+    // Open this one if it was closed
+    if (!isOpen) {
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  }
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('revealed'), i * 55);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -24px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
