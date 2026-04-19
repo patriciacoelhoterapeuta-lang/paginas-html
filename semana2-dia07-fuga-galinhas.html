@@ -48,14 +48,37 @@ p{font-family:'Lora',serif;font-size:1.02rem;color:var(--ink-soft);line-height:1
 .scribe-note{margin:40px 0;padding:28px 36px;border-left:2px solid rgba(90,107,78,.5);background:linear-gradient(to right,rgba(90,107,78,.06),transparent 80%)}
 .scribe-note-label{font-family:'Crimson Pro',serif;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--sage);opacity:.8;display:block;margin-bottom:8px}
 .scribe-note p{font-family:'Crimson Pro',serif;font-size:1.05rem;color:var(--sage);font-style:italic;margin:0;line-height:1.75}
-.week-end-note{margin-bottom:48px;padding:18px 28px;display:flex;align-items:center;gap:14px;border:1px solid rgba(154,114,48,.22);background:linear-gradient(to right,rgba(154,114,48,.06),rgba(154,114,48,.02));position:relative}
+
+/* ── ENCERRAMENTO DE SEMANA ──────────────────────────── */
+.week-end-note{
+  margin-bottom:48px;padding:18px 28px;
+  display:flex;align-items:center;gap:14px;
+  border:1px solid rgba(154,114,48,.22);
+  background:linear-gradient(to right,rgba(154,114,48,.06),rgba(154,114,48,.02));
+  position:relative;
+}
 .week-end-note::before{content:'Fim da 2ª Semana · Cinema com o Nei';position:absolute;top:-11px;left:20px;background:#EAD9B4;padding:0 12px;font-family:'Crimson Pro',serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
 .week-end-icon{font-size:1.4rem;opacity:.55;flex-shrink:0}
 .week-end-text{font-family:'Crimson Pro',serif;font-size:1rem;font-style:italic;color:var(--sepia);line-height:1.65}
+
+/* ── FILM CARD — tom verde prado / leveza ─────────────── */
 .film-card{margin:44px 0;border:1px solid rgba(122,92,58,.28);overflow:hidden}
-.film-card-top{background:linear-gradient(145deg,#0E1408 0%,#1C2410 50%,#0E1408 100%);padding:36px 40px;position:relative;overflow:hidden}
-.film-card-top::before{content:'';position:absolute;top:-30%;left:-10%;width:50%;height:120%;background:radial-gradient(ellipse,rgba(90,107,78,.18) 0%,transparent 70%);pointer-events:none}
-.film-card-top::after{content:'';position:absolute;top:0;bottom:0;left:0;width:28px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 8px,rgba(255,255,255,.05) 8px,rgba(255,255,255,.05) 16px);border-right:1px solid rgba(255,255,255,.04)}
+.film-card-top{
+  background:linear-gradient(145deg,#0E1408 0%,#1C2410 50%,#0E1408 100%);
+  padding:36px 40px;position:relative;overflow:hidden;
+}
+/* Luz de céu aberto — animação lúdica */
+.film-card-top::before{
+  content:'';position:absolute;
+  top:-30%;left:-10%;width:50%;height:120%;
+  background:radial-gradient(ellipse,rgba(90,107,78,.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+.film-card-top::after{
+  content:'';position:absolute;top:0;bottom:0;left:0;width:28px;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 8px,rgba(255,255,255,.05) 8px,rgba(255,255,255,.05) 16px);
+  border-right:1px solid rgba(255,255,255,.04);
+}
 .film-inner{position:relative;z-index:1;padding-left:20px}
 .film-genre{font-family:'Crimson Pro',serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(140,180,100,.75);display:block;margin-bottom:8px}
 .film-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:700;font-style:italic;color:#F0E6CC;line-height:1.15;display:block;margin-bottom:4px}
@@ -65,16 +88,33 @@ p{font-family:'Lora',serif;font-size:1.02rem;color:var(--ink-soft);line-height:1
 .film-meta-item strong{color:rgba(240,230,204,.76);font-weight:400}
 .film-card-bottom{padding:20px 40px;background:rgba(0,0,0,.06);border-top:1px solid rgba(122,92,58,.18);display:flex;gap:10px;flex-wrap:wrap}
 .film-tag{font-family:'Crimson Pro',serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sepia);padding:4px 12px;border:1px solid var(--edge-light);background:rgba(122,92,58,.04)}
-.ginger-spotlight{margin:44px 0;padding:32px 36px;border:1px solid rgba(122,92,58,.28);background:linear-gradient(135deg,rgba(154,114,48,.07),rgba(154,114,48,.02));position:relative}
-.ginger-spotlight::before{content:'A Personagem · Destaque';position:absolute;top:-11px;left:24px;background:#EAD9B4;padding:0 12px;font-family:'Crimson Pro',serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sepia);white-space:nowrap}
+
+/* ── PERSONAGEM GINGER — spotlight ────────────────────── */
+.ginger-spotlight{
+  margin:44px 0;
+  padding:32px 36px;
+  border:1px solid rgba(122,92,58,.28);
+  background:linear-gradient(135deg,rgba(154,114,48,.07),rgba(154,114,48,.02));
+  position:relative;
+}
+.ginger-spotlight::before{
+  content:'A Personagem · Destaque';
+  position:absolute;top:-11px;left:24px;
+  background:#EAD9B4;padding:0 12px;
+  font-family:'Crimson Pro',serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sepia);white-space:nowrap;
+}
 .ginger-name{font-family:'Playfair Display',serif;font-size:1.35rem;font-style:italic;color:var(--rust);display:block;margin-bottom:12px}
 .ginger-text{font-family:'Lora',serif;font-size:.98rem;color:var(--ink-soft);line-height:1.9}
+
+/* ── LIÇÕES EM TRÍADE ─────────────────────────────────── */
 .licoes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:40px 0;border:1px solid var(--edge-light);overflow:hidden}
 .licao{padding:22px 18px;background:rgba(255,255,255,.05);border-right:1px solid var(--edge-light);text-align:center}
 .licao:last-child{border-right:none}
 .licao-icon{font-size:1.2rem;opacity:.5;display:block;margin-bottom:8px}
 .licao-name{font-family:'Playfair Display',serif;font-size:.88rem;font-style:italic;color:var(--rust);display:block;margin-bottom:4px}
 .licao-desc{font-family:'Crimson Pro',serif;font-size:.82rem;color:var(--sepia);line-height:1.5}
+
+/* ── APAR ────────────────────────────────────────────── */
 .apar-block{margin:52px 0 0;border:1px solid rgba(122,92,58,.28);background:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.05) 100%)}
 .apar-header{display:flex;align-items:center;border-bottom:1px solid rgba(122,92,58,.18)}
 .apar-tab{background:var(--rust);color:#F0E6CC;font-family:'Crimson Pro',serif;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;padding:10px 20px;white-space:nowrap;flex-shrink:0}
@@ -97,9 +137,17 @@ textarea::placeholder{font-family:'Crimson Pro',serif;font-style:italic;color:rg
 .btn-clear:hover{background:rgba(122,92,58,.08);border-color:var(--sepia-light)}
 .save-msg{font-family:'Crimson Pro',serif;font-size:.8rem;color:var(--sage);font-style:italic;align-self:center;opacity:0;transition:opacity .4s}
 .save-msg.show{opacity:1}
-.week-closure{margin-top:36px;padding:32px 40px;border:1px solid rgba(154,114,48,.25);background:linear-gradient(180deg,rgba(154,114,48,.05),rgba(154,114,48,.02));text-align:center;position:relative}
+
+/* Encerramento final da semana */
+.week-closure{
+  margin-top:36px;padding:32px 40px;
+  border:1px solid rgba(154,114,48,.25);
+  background:linear-gradient(180deg,rgba(154,114,48,.05),rgba(154,114,48,.02));
+  text-align:center;position:relative;
+}
 .week-closure::before{content:'✦ Fim da 2ª Semana ✦';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#EAD9B4;padding:0 14px;font-family:'Crimson Pro',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
 .week-closure p{font-family:'Crimson Pro',serif;font-size:1.05rem;font-style:italic;color:var(--sepia);margin:0;line-height:1.75}
+
 .pg-footer{margin-top:56px;padding-top:28px}
 .pg-footer-rule{display:flex;align-items:center;margin-bottom:14px}
 .pg-footer-bar{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--sepia-light),transparent)}
@@ -108,7 +156,12 @@ textarea::placeholder{font-family:'Crimson Pro',serif;font-style:italic;color:rg
 .fade-in{opacity:0;transform:translateY(16px);animation:fadeUp .9s ease forwards}
 .fade-in:nth-child(1){animation-delay:.1s}.fade-in:nth-child(2){animation-delay:.28s}.fade-in:nth-child(3){animation-delay:.46s}.fade-in:nth-child(4){animation-delay:.64s}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-@media(max-width:640px){body{padding:16px 8px 48px}.parchment{padding:44px 28px 52px}.frame{inset:14px}h1{font-size:1.8rem}.quote-block{margin:36px -8px;padding:30px 32px}.film-card-top{padding:24px 20px}.film-card-bottom{padding:16px 20px}.licoes-grid{grid-template-columns:1fr}.licao{border-right:none;border-bottom:1px solid var(--edge-light)}.licao:last-child{border-bottom:none}.apar-body{padding:24px 20px 28px}.form-actions{flex-direction:column}.btn-save,.btn-clear{width:100%;text-align:center}}
+@media(max-width:640px){
+  body{padding:16px 8px 48px}.parchment{padding:44px 28px 52px}.frame{inset:14px}h1{font-size:1.8rem}
+  .quote-block{margin:36px -8px;padding:30px 32px}.film-card-top{padding:24px 20px}.film-card-bottom{padding:16px 20px}
+  .licoes-grid{grid-template-columns:1fr}.licao{border-right:none;border-bottom:1px solid var(--edge-light)}.licao:last-child{border-bottom:none}
+  .apar-body{padding:24px 20px 28px}.form-actions{flex-direction:column}.btn-save,.btn-clear{width:100%;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -137,60 +190,159 @@ textarea::placeholder{font-family:'Crimson Pro',serif;font-style:italic;color:rg
     <h1><em>A Fuga das Galinhas</em></h1>
     <div class="rule">✦</div>
     <p class="subtitle">Precisamos ser e agir diferente para alcançarmos o que desejamos — persistir e não desistir nunca.</p>
-  </hea</header>
+  </header>
 
-  <main>
-    <div class="guide">
-      <div class="guide-item fade-in">
-        <div class="guide-icon">🐔</div>
-        <div class="guide-text">A galinha que foge do galinheiro encontra o mundo — mas também os seus predadores.</div>
+  <!-- Nota de encerramento + intro -->
+  <div data-reveal>
+    <div class="week-end-note">
+      <span class="week-end-icon">◎</span>
+      <span class="week-end-text">Você está encerrando sua segunda semana da Jornada em Autoria. A indicação de hoje é um filme divertido e engraçado — mas ao mesmo tempo motivador e edificante, capaz de elevar seu nível de consciência de uma forma lúdica.</span>
+    </div>
+
+    <div class="sec-label"><span>O Filme de Hoje</span></div>
+
+    <div class="film-card">
+      <div class="film-card-top">
+        <div class="film-inner">
+          <span class="film-genre">Animação Stop-Motion · Comédia · 2000</span>
+          <span class="film-title">A Fuga das Galinhas</span>
+          <span class="film-subtitle">Chicken Run</span>
+          <div class="film-meta">
+            <span class="film-meta-item"><strong>Estúdio</strong> Aardman Animations</span>
+            <span class="film-meta-item"><strong>Dublagem original</strong> Mel Gibson · Julia Sawalha · Miranda Richardson</span>
+            <span class="film-meta-item"><strong>Técnica</strong> Stop-motion — modelos reais fotografados quadro a quadro</span>
+          </div>
+        </div>
       </div>
-      <div class="guide-item fade-in">
-        <div class="guide-icon">✍️</div>
-        <div class="guide-text">Hoje você vai escrever sobre uma fuga que fez sentido — e sobre o que aprendeu com ela.</div>
+      <div class="film-card-bottom">
+        <span class="film-tag">Liberdade</span>
+        <span class="film-tag">Persistência</span>
+        <span class="film-tag">Liderança</span>
+        <span class="film-tag">Trabalho em Equipe</span>
+        <span class="film-tag">Não Conformismo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sinopse + Ginger -->
+  <div data-reveal>
+    <div class="sec-label"><span>A História</span></div>
+    <p class="drop-cap">Em uma granja onde vivem várias galinhas em um regime cruel de exploração, está Ginger — uma galinha que não se conforma com sua situação e está constantemente planejando fugas que sempre fracassam. No meio dessa situação aparece Rocky, um galo que diz ser capaz de voar e concorda em ensinar as galinhas a conquistar a tão desejada liberdade.</p>
+    <p>Em um primeiro momento, A Fuga das Galinhas pode parecer apenas mais um filme infantil de animação. Porém, com um olhar mais detalhado e aberto, podemos tirar valiosas lições dos divertidos galináceos.</p>
+
+    <div class="ginger-spotlight">
+      <span class="ginger-name">Ginger — a personagem que merece destaque</span>
+      <p class="ginger-text">Ela é a única galinha capaz de perceber a situação em que se encontram e não se conformar. Ginger está constantemente em busca de liberdade e, mesmo após várias tentativas frustradas, continua acreditando e insistindo. Enquanto todas as outras galinhas aceitam seu destino, Ginger se move e busca ativamente alternativas e soluções.</p>
+    </div>
+
+    <div class="quote-block">
+      <p>Mesmo em meio a tantos fracassos, Ginger persiste. E graças a essa persistência, ela consegue mobilizar suas companheiras e criar um espírito de coletividade.</p>
+    </div>
+
+    <div class="licoes-grid">
+      <div class="licao">
+        <span class="licao-icon">◎</span>
+        <span class="licao-name">Não Conformismo</span>
+        <span class="licao-desc">Questionar a situação em que se está é o primeiro passo para a mudança</span>
+      </div>
+      <div class="licao">
+        <span class="licao-icon">✦</span>
+        <span class="licao-name">Persistência</span>
+        <span class="licao-desc">O fracasso não é o fim — é parte do caminho para a liberdade</span>
+      </div>
+      <div class="licao">
+        <span class="licao-icon">◇</span>
+        <span class="licao-name">Coletividade</span>
+        <span class="licao-desc">Uma liderança genuína inspira e mobiliza — não impõe</span>
       </div>
     </div>
 
-    <div class="quote-area fade-in">
-      <textarea class="quote-field" placeholder="Escreva aqui sua reflexão do dia..."></textarea>
-      <div class="response-actions">
-        <button class="save" onclick="salvar()">Salvar reflexão</button>
-        <button class="clear" onclick="limpar()">Limpar</button>
+    <div class="scribe-note">
+      <span class="scribe-note-label">A mensagem central</span>
+      <p>Ginger é um exemplo de que precisamos ser e agir diferente para alcançarmos o que desejamos. Devemos persistir e não desistir nunca.</p>
+    </div>
+  </div>
+
+  <!-- APAR -->
+  <div data-reveal>
+    <div class="apar-block">
+      <div class="apar-header">
+        <div class="apar-tab">APAR© · Semana 2 · Dia 7</div>
+        <div class="apar-title-bar">A Fuga das Galinhas — Sua Missão de Hoje</div>
       </div>
-      <div class="msg" id="msg">Reflexão salva com sucesso!</div>
-    </div>
+      <div class="apar-body">
+        <p>Assista ao filme com atenção e abertura. Deixe as perguntas abaixo guiarem sua reflexão:</p>
 
-    <div class="closure fade-in">
-      <p>Esta é a última lição da 2ª Semana. Parabéns por chegar até aqui.</p>
-      <div class="footer-rule"></div>
-      <div class="footer-bar"></div>
-      <div class="footer-glyph">✦ ✦ ✦</div>
-      <p>Continue na jornada. A próxima semana reserva novos desafios.</p>
-    </div>
-  </main>
+        <div class="watch-guide">
+          <div class="watch-item">
+            <span class="watch-icon">◉</span>
+            <span class="watch-text">Em que momento da sua vida você já foi como as galinhas que aceitam o destino — e em que momento você já foi como a Ginger, que não se conforma?</span>
+          </div>
+          <div class="watch-item">
+            <span class="watch-icon">◉</span>
+            <span class="watch-text">Existe algo na sua vida hoje que você ainda não se permite questionar — uma "grade" que talvez seja menor do que parece?</span>
+          </div>
+          <div class="watch-item">
+            <span class="watch-icon">◉</span>
+            <span class="watch-text">A Ginger falha repetidamente — mas continua. O que te faz continuar quando você falha? E o que te faz parar?</span>
+          </div>
+          <div class="watch-item">
+            <span class="watch-icon">◉</span>
+            <span class="watch-text">Qual é o seu "galinheiro"? Qual é a liberdade que você está buscando nesta jornada de 84 dias?</span>
+          </div>
+          <div class="watch-item">
+            <span class="watch-icon">◉</span>
+            <span class="watch-text">Que lição deste filme você quer carregar para a Terceira Semana?</span>
+          </div>
+        </div>
 
+        <span class="response-label">Relate o que aprendeu com este filme</span>
+        <textarea id="resp_galinhas" placeholder="Escreva aqui suas reflexões, insights e aprendizados…" oninput="autoSave()"></textarea>
+
+        <div class="form-actions">
+          <span class="save-msg" id="saveMsg">✓ Salvo</span>
+          <button class="btn-clear" onclick="clearResp()">Limpar</button>
+          <button class="btn-save" onclick="saveResp()">Salvar</button>
+        </div>
+
+        <div class="week-closure">
+          <p>Você acaba de concluir sua <strong>segunda semana</strong> da Jornada em Autoria.<br>Quatorze dias de autoconhecimento, ferramentas e histórias que transformam.<br><br><em>A Terceira Semana começa amanhã. Siga firme em seu propósito.</em></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="pg-footer" data-reveal>
+    <div class="pg-footer-rule">
+      <div class="pg-footer-bar"></div>
+      <div class="pg-footer-glyph">✦ ✦ ✦</div>
+      <div class="pg-footer-bar"></div>
+    </div>
+    <p>© Jornada em Autoria · Claudinei Silva &amp; Patricia Coelho · Todos os direitos reservados</p>
+  </div>
 </div>
 
 <script>
-function salvar() {
-  const texto = document.querySelector('.quote-field').value;
-  if (texto.trim()) {
-    localStorage.setItem('dia07-reflexao', texto);
-    const msg = document.getElementById('msg');
-    msg.style.opacity = 1;
-    setTimeout(() => { msg.style.opacity = 0; }, 3000);
-  }
+const KEY = 'jornada_galinhas_v1';
+const el  = () => document.getElementById('resp_galinhas');
+function saveResp(){
+  try{localStorage.setItem(KEY, el().value);}catch(e){}
+  const m = document.getElementById('saveMsg');
+  m.classList.add('show'); setTimeout(()=>m.classList.remove('show'),2200);
 }
-
-function limpar() {
-  document.querySelector('.quote-field').value = '';
+let t;
+function autoSave(){ clearTimeout(t); t=setTimeout(saveResp,1200); }
+function clearResp(){
+  if(!confirm('Deseja apagar sua resposta?')) return;
+  el().value=''; try{localStorage.removeItem(KEY);}catch(e){}
 }
+try{ const d=localStorage.getItem(KEY); if(d) el().value=d; }catch(e){}
 
-window.onload = function() {
-  const salvo = localStorage.getItem('dia07-reflexao');
-  if (salvo) document.querySelector('.quote-field').value = salvo;
-};
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('revealed'),i*55);io.unobserve(e.target);}});
+},{threshold:.07,rootMargin:'0px 0px -24px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 </script>
-
 </body>
 </html>
