@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jornada em Autoria — 6ª Semana · Dia 2 · Definição de Metas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--pm:#EAD9B4;--cream:#F0E6CC;--ink:#1C1410;--inks:#362718;--sepia:#7A5C3A;--sl:#B8966A;--gold:#9A7230;--gs:#C49A45;--rust:#7A2E1A;--sage:#5A6B4E;--el:rgba(184,150,106,0.22)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:#1E150C;background-image:radial-gradient(ellipse 90% 50% at 50% 0%,#32200E 0%,transparent 70%),radial-gradient(ellipse 70% 40% at 50% 100%,#120C06 0%,transparent 70%);min-height:100vh;font-family:
+'Lora',Georgia,serif;color:var(--ink);overflow-x:hidden;padding:48px 16px 72px}
+.parchment{position:relative;max-width:820px;margin:0 auto;background:radial-gradient(ellipse 110% 40% at 50% 0%,rgba(255,255,255,.10) 0%,transparent 60%),radial-gradient(ellipse 110% 30% at 50% 100%,rgba(0,0,0,.10) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 0% 0%,rgba(90,60,20,.18) 0%,transparent 55%),radial-gradient(ellipse 40% 30% at 100% 0%,rgba(90,60,20,.14) 0%,transparent 55%),radial-gradient(ellipse 40% 25% at 0% 100%,rgba(40,20,5,.22) 0%,transparent 55%),radial-gradient(ellipse 40% 25% at 100% 100%,rgba(40,20,5,.22) 0%,transparent 55%),linear-gradient(168deg,#F2E8D0 0%,#EDE0B8 35%,#E8D8A8 68%,#E0CFA0 100%);padding:72px 64px 80px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.35),0 32px 80px rgba(0,0,0,.50),0 64px 120px rgba(0,0,0,.30)}
+.parchment::before{content:
+'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'250\' height=\'250\'%3E%3Cfilter id=\'g\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'%3E%3C/feTurbulence%3E%3CfeColorMatrix type=\'saturate\' values=\'0\'%3E%3C/feColorMatrix%3E%3C/filter%3E%3Crect width=\'250\' height=\'250\' filter=\'url(%23g)\' opacity=\'0.06\'%3E%3C/rect%3E%3C/svg%3E");pointer-events:none;z-index:0;mix-blend-mode:multiply}
+.parchment>*{position:relative;z-index:1}
+.frame{position:absolute;inset:26px;border:1px solid rgba(122,92,58,.30);pointer-events:none;z-index:2}
+.corner{position:absolute;font-size:.55rem;color:var(--sl);background:#EAD9B4;width:18px;height:18px;text-align:center;line-height:18px;z-index:3}
+.corner.tl{top:17px;left:17px}.corner.tr{top:17px;right:17px}.corner.bl{bottom:17px;left:17px}.corner.br{bottom:17px;right:17px}
+.seal{display:flex;align-items:center;margin-bottom:52px}
+.seal-bar{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--sl),transparent)}
+.seal-center{display:flex;flex-direction:column;align-items:center;gap:5px;padding:0 24px}
+.seal-glyph{font-size:1.1rem;color:var(--gs);letter-spacing:.3em;line-height:1}
+.seal-label{font-family:
+'Crimson Pro',serif;font-size:.64rem;letter-spacing:.32em;text-transform:uppercase;color:var(--sepia);white-space:nowrap}
+header{text-align:center;margin-bottom:56px;padding-bottom:48px;border-bottom:1px solid var(--el)}
+h1{font-family:
+'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--ink);margin-bottom:16px}
+h1 em{font-style:italic;color:var(--rust)}
+.subtitle{font-family:
+'Crimson Pro',serif;font-size:1.1rem;font-style:italic;color:var(--sepia)}
+.content-block{margin-bottom:40px;line-height:1.6;color:var(--inks);font-size:1.05rem}
+.content-block h2{font-family:
+'Playfair Display',serif;font-size:1.8rem;color:var(--rust);margin-bottom:20px}
+.content-block p{margin-bottom:1em}
+.mission-box{background:rgba(122,92,58,0.05);border:1px solid var(--el);padding:30px;margin-top:40px}
+.mission-box h3{font-family:
+'Playfair Display',serif;font-size:1.4rem;color:var(--sepia);margin-bottom:15px}
+.mission-box textarea{width:100%;min-height:150px;padding:15px;border:1px solid var(--sl);background:rgba(255,255,255,0.7);font-family:
+'Lora',serif;font-size:1rem;color:var(--ink);resize:vertical}
+.mission-box button{background:var(--rust);color:var(--cream);border:none;padding:12px 25px;font-family:
+'Crimson Pro',serif;font-size:.9rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;margin-top:15px;transition:all 0.3s}
+.mission-box button:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+.video-button{display:inline-block;background:var(--gold);color:var(--ink);padding:15px 30px;font-family:
+'Crimson Pro',serif;font-size:1.1rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-radius:5px;margin-top:20px;transition:all 0.3s}
+.video-button:hover{background:var(--gs);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+footer{text-align:center;margin-top:80px;padding-top:40px;border-top:1px solid var(--el);font-family:
+'Crimson Pro',serif;font-size:.75rem;color:var(--sepia);opacity:.8}
+</style>
+</head>
+<body>
+<div class="parchment">
+  <div class="frame"></div>
+  <div class="corner tl">✦</div><div class="corner tr">✦</div>
+  <div class="corner bl">✦</div><div class="corner br">✦</div>
+  <div class="seal"><div class="seal-bar"></div><div class="seal-center"><div class="seal-glyph">✦ ✦ ✦</div><div class="seal-label">6ª Semana · Dia 2</div></div><div class="seal-bar"></div></div>
+  <header><h1>Definição de Metas</h1><p class="subtitle">Construindo o seu futuro através de objetivos claros</p></header>
+  
+  <div class="content-block">
+    
+<p>Em um famoso trecho do livro <em>Alice no país das maravilhas</em>, de Lewis Carrol, a pequena Alice se depara com uma encruzilhada com diversos caminhos possíveis. Um gato que estava sobre uma arvore pergunta se Alice precisa de ajuda. Alice diz: “Eu só queria saber qual caminho tomar”. Ao que o gato responde: “Isso depende do lugar aonde você quer chegar”.</p>
+<p>Esse pequeno diálogo serve para nos fazer refletir sobre a importância de sabermos aonde queremos chegar. A única forma de escolhermos um caminho certo é quando temos um destino. Sem um destino pré-definido, podemos tomar qualquer caminho ou nenhum caminho, pois não temos lugar nenhum aonde chegar.</p>
+<p>Esse é o principal motivo da importância de termos metas bem estabelecidas. Definir metas é trabalhar na construção do seu futuro! Criar metas reais é o primeiro passo para focar o seu trabalho presente com foco em resultados futuros. É um meio de garantir frutos extraordinários pelos trabalhos que realizamos.</p>
+<p>Muitas pessoas desejam muitas coisas, sonham alto, querem diversas coisas, mas não se movem, porque consideram que seja impossível conseguir o que desejam. Muitas pessoas desejam adquirir estabilidade financeira, sucesso e reconhecimento em sua vida profissional, mas não definem quais são as suas metas reais para conseguir o que desejam. Ficam somente no plano vago do desejo dizendo, por exemplo, “eu quero ganhar muito dinheiro”. Porém, é preciso fazer diferente, é preciso criar metas que se adequam à sua realidade, aos seus recursos; é preciso definir objetivos e ousar alcançá-los; é preciso haver metas que envolvam “como, quando e onde fazer”, que envolvam prazos e compromissos.</p>
+<p>A tarefa de hoje é uma poderosa ferramenta de definição de metas. Responda com afinco todas as perguntas propostas para lhe auxiliar a definir suas metas. Boa sorte!</p>
+
+  </div>
+
+  
+<div class="mission-box" style="margin-top: 20px; border-top: 2px solid var(--rust); padding-top: 30px;">
+    <h2 style="font-family:'Playfair Display',serif; color:var(--rust); text-align:center; margin-bottom:30px;">QUESTIONÁRIO APARG</h2>
+    
+    <div style="margin-bottom: 25px;">
+        <label style="display:block; font-weight:bold; margin-bottom:10px;">1. Defina sua meta.</label>
+        <textarea id="meta_def" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--sl);"></textarea>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+        <label style="display:block; font-weight:bold; margin-bottom:10px;">2. Ela está expressa em termos positivos?</label>
+        <p style="font-size:0.9rem; font-style:italic; margin-bottom:10px; color:var(--sepia);">(Procure criar uma representação da meta concretizada: imagem, som, pessoas envolvidas, cheiro, ou uma palavra que faça sentido para você).</p>
+        <textarea id="meta_pos" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--sl);"></textarea>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+        <label style="display:block; font-weight:bold; margin-bottom:10px;">3. Sua realização depende somente de você? Qual é o prazo para conclusão?</label>
+        <textarea id="meta_dep" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--sl);"></textarea>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+        <label style="display:block; font-weight:bold; margin-bottom:10px;">4. Como você vai saber que está se aproximando da meta? Quais são os sinais?</label>
+        <textarea id="meta_sinais" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--sl);"></textarea>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+        <label style="display:block; font-weight:bold; margin-bottom:10px;">5. A meta definida respeita seus valores?</label>
+        <textarea id="meta_valores" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--sl);"></textarea>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+        <label style="display:block; font-weight:bold; margin-bottom:10px;">6. A meta definida está de acordo com sua visão de curto, médio e longo prazos?</label>
+        <textarea id="meta_visao" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--sl);"></textarea>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+        <label style="display:block; font-weight:bold; margin-bottom:10px;">7. Qual é o seu plano B?</label>
+        <p style="font-size:0.9rem; font-style:italic; margin-bottom:10px; color:var(--sepia);">(O que você fará se o curso de ação escolhido não alcançar o resultado esperado?)</p>
+        <textarea id="meta_planob" style="width:100%; min-height:80px; padding:10px; border:1px solid var(--sl);"></textarea>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+        <label style="display:block; font-weight:bold; margin-bottom:10px;">8. Liste os 5 primeiros passos que você dará para atingir sua meta.</label>
+        <div style="display:grid; gap:10px;">
+            <input type="text" id="passo1" placeholder="Primeiro passo" style="width:100%; padding:10px; border:1px solid var(--sl);">
+            <input type="text" id="passo2" placeholder="Segundo passo" style="width:100%; padding:10px; border:1px solid var(--sl);">
+            <input type="text" id="passo3" placeholder="Terceiro passo" style="width:100%; padding:10px; border:1px solid var(--sl);">
+            <input type="text" id="passo4" placeholder="Quarto passo" style="width:100%; padding:10px; border:1px solid var(--sl);">
+            <input type="text" id="passo5" placeholder="Quinto passo" style="width:100%; padding:10px; border:1px solid var(--sl);">
+        </div>
+    </div>
+    
+    <button onclick="saveAPARG()" style="width:100%;">Salvar Questionário de Metas</button>
+</div>
+
+<script>
+function saveAPARG() {
+    const data = {
+        meta_def: document.getElementById('meta_def').value,
+        meta_pos: document.getElementById('meta_pos').value,
+        meta_dep: document.getElementById('meta_dep').value,
+        meta_sinais: document.getElementById('meta_sinais').value,
+        meta_valores: document.getElementById('meta_valores').value,
+        meta_visao: document.getElementById('meta_visao').value,
+        meta_planob: document.getElementById('meta_planob').value,
+        passo1: document.getElementById('passo1').value,
+        passo2: document.getElementById('passo2').value,
+        passo3: document.getElementById('passo3').value,
+        passo4: document.getElementById('passo4').value,
+        passo5: document.getElementById('passo5').value
+    };
+    localStorage.setItem('jornada_aparg_semana6_dia2', JSON.stringify(data));
+    alert('Suas metas foram salvas com sucesso no seu navegador!');
+}
+
+window.addEventListener('load', () => {
+    const saved = localStorage.getItem('jornada_aparg_semana6_dia2');
+    if (saved) {
+        const data = JSON.parse(saved);
+        for (const key in data) {
+            const el = document.getElementById(key);
+            if (el) el.value = data[key];
+        }
+    }
+});
+</script>
+
+
+  <div class="mission-box">
+    <h3>{{TITULO_MISSAO_APAR}}</h3>
+    <textarea id="missionText" placeholder="Escreva aqui o que você aprendeu e suas reflexões..."></textarea>
+    <button onclick="saveMission()">Salvar Reflexão</button>
+  </div>
+
+  <footer>© Jornada em Autoria · Todos os direitos reservados</footer>
+</div>
+
+<script>
+function saveMission() {
+  const missionText = document.getElementById("missionText").value;
+  localStorage.setItem("jornada_autoria_semana6_dia2", missionText);
+  alert("Sua reflexão foi salva com sucesso!");
+}
+
+// Carregar reflexão salva ao carregar a página
+window.onload = function() {
+  const savedText = localStorage.getItem("jornada_autoria_semana6_dia2");
+  if (savedText) {
+    document.getElementById("missionText").value = savedText;
+  }
+};
+</script>
+</body>
+</html>
